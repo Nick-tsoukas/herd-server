@@ -6,6 +6,12 @@ const jwt = require('jsonwebtoken');
 
 const secretKey = process.env.KEY
 // sign up route
+
+
+router.get('/', (req,res) => {
+    res.send("this is the home route");
+});
+
 router.post('/signUp', async (req, res) => {
     
     const { email, password } = req.body;

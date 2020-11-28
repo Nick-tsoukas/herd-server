@@ -8,11 +8,13 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
 const locationRoutes = require('./routes/locationRoutes');
 const requireAuth = require('./middlewares/requireAuth');
-
 const app = express();
+const http = require('http').createServer(app)
+const io = require('socket.io')(http);
 app.use(bodyParser.json());
 app.use(authRoutes);
 app.use(locationRoutes);
+
 
 const mongoUri = process.env.MONGOURL;
 mongoose.connect(mongoUri, {
@@ -32,6 +34,6 @@ app.get('/', requireAuth, (req,res) => {
     res.send(req.user.email);
 });
 
-app.listen(3000, () => {
-    console.log('hello')
+http.listen(3000, () => {
+    console.log('the server is running')
 })

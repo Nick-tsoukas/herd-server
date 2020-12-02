@@ -7,9 +7,8 @@ const jwt = require('jsonwebtoken');
 const secretKey = process.env.KEY
 // sign up route
 
-
 router.get('/', (req,res) => {
-    res.send("this is the home route");
+    res.send("This is just the home route that does nothing");
 });
 
 router.post('/signUp', async (req, res) => {
@@ -31,10 +30,13 @@ router.post('/signUp', async (req, res) => {
 
 router.post('/signIn', async (req, res) => {
     const { email, password } = req.body;
+
     if(!email || !password){
         return res.status(422).send({error: 'Must provide email and password'});
     }
+
     const user = await User.findOne({email: email});
+
     if(!user){
         res.status(404).send({error: 'User not found ... please try again'});
     }
@@ -47,5 +49,5 @@ router.post('/signIn', async (req, res) => {
         res.send({error: 'Sorry the details provided are not correct'})
     }
 
-})
+});
 module.exports = router;

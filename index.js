@@ -29,11 +29,11 @@ mongoose.connection.on('connected', () => {
 
 mongoose.connection.on('error', (err) => {
     console.log("error", err)
-})
+});
 app.get('/', requireAuth, (req,res) => {
     res.send(req.user.email);
 });
 
 http.listen(3000, () => {
     console.log('the server is running')
-})
+});

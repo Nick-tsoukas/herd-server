@@ -34,7 +34,7 @@ const io = require("socket.io")(expressServer, {
     //   io.emit('message', data);
     });
     socket.on('location', (data) => {
-        console.log('we are getting the location data, and will present it to you shortly', data);
+        console.log(data);
     })
    
   });

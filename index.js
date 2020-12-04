@@ -35,6 +35,7 @@ const io = require("socket.io")(expressServer, {
     });
     socket.on('location', (data) => {
         console.log(data);
+        console.log(socket.id)
     })
    
   });

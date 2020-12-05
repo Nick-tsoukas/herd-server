@@ -34,8 +34,8 @@ const io = require("socket.io")(expressServer, {
     //   io.emit('message', data);
     });
     socket.on('location', (data) => {
-        console.log(data);
-        console.log(socket.id)
+        console.log(data)
+        io.emit('location', {data, socket: socket.id})
     })
    
   });

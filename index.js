@@ -29,15 +29,16 @@ const io = require("socket.io")(expressServer, {
   io.on('connection', (socket) => {
     console.log('you are now connected to the Web Socket from server');
 
-    socket.on('message', (data) => {
-      console.log('message from server back to client ', data)
-    //   io.emit('message', data);
-    });
     socket.on('location', (data) => {
-        console.log(data)
-        io.emit('location', {data, socket: socket.id})
-    })
-   
+      console.log('getting location data from client ', data)
+      io.emit('location', {socket: socket.id, data})
+    });
+
+    socket.on('message', (data) => {
+      console.log(data);
+      io.emit('message', {data: 'this is a message from the server'})
+    });
+    
   });
 
 
@@ -59,7 +60,3 @@ mongoose.connection.on('error', (err) => {
 app.get('/', requireAuth, (req,res) => {
     res.send(req.user.email);
 });
-
-// http.listen(3000, () => {
-//     console.log('the server is running')
-// });

@@ -11,14 +11,13 @@ router.get('/locations', async (req, res) => {
 });
 
 router.post('/locations', async (req, res) => {
-  const {locations } = req.body;
+  const  locations  = req.body;
   console.log(locations)
 
   if (!locations) {
     return res
       .status(422)
-      // .send({ error: 'You must provide locations' });
-      .send(req.body)
+      .send({ error: 'You must provide locations' });
   }
 
   try {
@@ -28,6 +27,13 @@ router.post('/locations', async (req, res) => {
   } catch (err) {
     res.status(422).send({ error: err.message });
   }
+});
+
+router.get('/locationsTest', (req, res) => {
+  if(error) {
+    res.send(error);
+  }
+  res.send(req.body);
 });
 
 module.exports = router;

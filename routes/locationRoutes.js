@@ -30,10 +30,7 @@ router.post('/locations', async (req, res) => {
 });
 
 router.get('/locationsTest', (req, res) => {
-  if(error) {
-    res.send(error);
-  }
-  res.send(req.body);
+  res.send(req.user._id);
 });
 
 module.exports = router;

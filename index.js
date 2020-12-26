@@ -30,7 +30,8 @@ const io = require("socket.io")(expressServer, {
     console.log('you are now connected to the Web Socket from server');
 
     socket.on('location', (data) => {
-      console.log('getting location data from client ', data)
+      console.log('getting location data from client ', data);
+      
       io.emit('location', {socket: socket.id, data})
     });
 

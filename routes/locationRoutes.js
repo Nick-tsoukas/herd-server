@@ -29,7 +29,10 @@ router.post('/locations', async (req, res) => {
   }
 });
 
-router.get('/locationsTest', (req, res) => {
+/* Lind 33 we require the middleware in requreAuth ...
+we need the token from the user so we can get the userID to later save location data to the database
+*/
+router.get('/locationsTest', requireAuth (req, res) => {
   res.send(req.user._id);
 });
 

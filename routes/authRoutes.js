@@ -3,12 +3,13 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const requireAuth = require('../middlewares/requireAuth');
 
 const secretKey = process.env.KEY
 // sign up route
 
-router.get('/', (req,res) => {
-    res.send("This is just the home route that does nothing");
+router.get('/', requireAuth,  (req,res) => {
+    res.send("You are logged in ");
 });
 
 router.post('/signUp', async (req, res) => {

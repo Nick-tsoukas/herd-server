@@ -10,16 +10,14 @@ router.get('/locations', async (req, res) => {
   res.send(locations);
 });
 
-router.post('/locations', async (req, res) => {
+router.post('/locations', requireAuth, async (req, res) => {
   const  locations  = req.body;
-  console.log(locations)
 
   if (!locations) {
     return res
       .status(422)
       .send({ error: 'You must provide locations' });
   }
-
   try {
     const location = new Location({locations, userId: req.user._id });
     await location.save();
